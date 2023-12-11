@@ -1,37 +1,33 @@
 <?php
-// Récupération des données du formulaire
+$db = new SQLite3('cv_database.db');
+
+$db->exec("CREATE TABLE IF NOT EXISTS cv (
+    id INTEGER PRIMARY KEY,
+    nom TEXT,
+    prenom TEXT,
+    email TEXT,
+    telephone TEXT,
+    adresse TEXT
+)");
+
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $email = $_POST['email'];
 $telephone = $_POST['telephone'];
 $adresse = $_POST['adresse'];
 
-try {
-    $db = new SQLite3('Cv.db');
+$insert = $db->prepare("INSERT INTO cv (nom, prenom, email, telephone, adresse) VALUES (:nom, :prenom, :email, :telephone, :adresse)");
+$insert->bindValue(':nom', $nom, SQLITE3_TEXT);
+$insert->bindValue(':prenom', $prenom, SQLITE3_TEXT);
+$insert->bindValue(':email', $email, SQLITE3_TEXT);
+$insert->bindValue(':telephone', $telephone, SQLITE3_TEXT);
+$insert->bindValue(':adresse', $adresse, SQLITE3_TEXT);
 
-    if (!$db) {
-        die("Connexion à la base de données échouée.");
-    }
+$result = $insert->execute();
 
-    $insertQuery = "INSERT INTO cv (nom, prenom, email, telephone, adresse) VALUES (:nom, :prenom, :email, :telephone, :adresse)";
-    $statement = $db->prepare($insertQuery);
-
-    $statement->bindParam(':nom', $nom);
-    $statement->bindParam(':prenom', $prenom);
-    $statement->bindParam(':email', $email);
-    $statement->bindParam(':telephone', $telephone);
-    $statement->bindParam(':adresse', $adresse);
-
-    $result = $statement->execute();
-
-    if ($result) {
-        echo "Les données ont été enregistrées avec succès dans la base de données.";
-    } else {
-        echo "Erreur lors de l'enregistrement des données.";
-    }
-
-    $db = null;
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+if ($result) {
+    echo "CV enregistré avec succès !";
+} else {
+    echo "Erreur lors de l'enregistrement du CV.";
 }
 ?>
