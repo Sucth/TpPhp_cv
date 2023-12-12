@@ -2,25 +2,61 @@
 <html>
 <head>
     <title>Formulaire de CV</title>
+    <link rel="stylesheet" type="text/css" href="form.css" />
 </head>
 <body>
-    <h1>Créer votre CV</h1>
-    <form action="Back.php" method="post">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required><br><br>
+    <h1 id="title">Creer votre CV</h1>
+    <form action="back.php" method="post">
+        <div class="card top-details">
+            <label id="cvinfo" for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="prenom">Prenom :</label>
+            <input type="text" id="prenom" name="prenom" required><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="email">Email :</label>
+            <input type="email" id="email" name="email" required><br><br>
+        </div>
         
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required><br><br>
-        
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required><br><br>
-        
-        <label for="telephone">Téléphone :</label>
-        <input type="tel" id="telephone" name="telephone" required><br><br>
-        
-        <label for="adresse">Adresse :</label>
-        <input type="text" id="adresse" name="adresse"><br><br>
-        
+        <div class="card top-details">
+            <label id="cvinfo" for="telephone">Telephone :</label>
+            <input type="tel" id="telephone" name="telephone" required><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="adresse">Adresse :</label>
+            <input type="text" id="adresse" name="adresse"><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="experience">Experience professionnelle :</label><br><br>
+            <textarea id="experience" name="experience" rows="3" cols="50"></textarea><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="education">Parcours academique :</label><br><br>
+            <textarea id="education" name="education" rows="3" cols="50"></textarea><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="niveaulangue">Niveau Langue :</label><br><br>
+
+            <label for="langue">Langue :</label>
+            <select id="langue" name="langue">
+                <option value="francais">Francais</option>
+                <option value="anglais">Anglais</option>
+                <option value="espagnol">Espagnol</option>
+            </select><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="hobbies">Hobbies :</label><br><br>
+            <textarea id="hobbies" name="hobbies" rows="3" cols="50"></textarea><br><br>
+        </div>
         <input type="submit" value="Enregistrer le CV">
     </form>
 </body>
