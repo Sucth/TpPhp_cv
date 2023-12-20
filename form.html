@@ -5,16 +5,26 @@
     <link rel="stylesheet" type="text/css" href="form.css" />
 </head>
 <body>
-    <h1 id="title">Creer votre CV</h1>
-    <form action="back.php" method="post">
+    <h1 id="title">Créer votre CV</h1>
+    <form action="back.php" method="post" enctype="multipart/form-data">
         <div class="card top-details">
             <label id="cvinfo" for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" required><br><br>
         </div>
 
         <div class="card top-details">
-            <label id="cvinfo" for="prenom">Prenom :</label>
+            <label id="cvinfo" for="prenom">Prénom :</label>
             <input type="text" id="prenom" name="prenom" required><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="posteA">Poste Recherché :</label>
+            <input type="text" id="posteA" name="posteA" required><br><br>
+        </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="diplome">Diplôme :</label>
+            <input type="text" id="diplome" name="diplome" required><br><br>
         </div>
 
         <div class="card top-details">
@@ -23,7 +33,7 @@
         </div>
         
         <div class="card top-details">
-            <label id="cvinfo" for="telephone">Telephone :</label>
+            <label id="cvinfo" for="telephone">Téléphone :</label>
             <input type="tel" id="telephone" name="telephone" required><br><br>
         </div>
 
@@ -33,21 +43,19 @@
         </div>
 
         <div class="card top-details">
-            <label id="cvinfo" for="experience">Experience professionnelle :</label><br><br>
+            <label id="cvinfo" for="experience">Expérience professionnelle :</label><br><br>
             <textarea id="experience" name="experience" rows="3" cols="50"></textarea><br><br>
         </div>
 
         <div class="card top-details">
-            <label id="cvinfo" for="education">Parcours academique :</label><br><br>
+            <label id="cvinfo" for="education">Parcours académique :</label><br><br>
             <textarea id="education" name="education" rows="3" cols="50"></textarea><br><br>
         </div>
 
         <div class="card top-details">
-            <label id="cvinfo" for="niveaulangue">Niveau Langue :</label><br><br>
-
-            <label for="langue">Langue :</label>
+            <label id="cvinfo" for="langue">Langue :</label>
             <select id="langue" name="langue">
-                <option value="francais">Francais</option>
+                <option value="francais">Français</option>
                 <option value="anglais">Anglais</option>
                 <option value="espagnol">Espagnol</option>
             </select><br><br>
@@ -57,6 +65,12 @@
             <label id="cvinfo" for="hobbies">Hobbies :</label><br><br>
             <textarea id="hobbies" name="hobbies" rows="3" cols="50"></textarea><br><br>
         </div>
+
+        <div class="card top-details">
+            <label id="cvinfo" for="photo">Photo :</label>
+            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+        </div>
+
         <input type="submit" value="Enregistrer le CV">
     </form>
 </body>

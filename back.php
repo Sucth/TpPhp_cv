@@ -1,47 +1,63 @@
 <?php
-$db = new SQLite3('cv_database.db');
 
-$db->exec("CREATE TABLE IF NOT EXISTS cv (
-    id INTEGER PRIMARY KEY,
-    nom TEXT,
-    prenom TEXT,
-    email TEXT,
-    telephone TEXT,
-    adresse TEXT,
-    experience TEXT,
-    education TEXT,
-    langue TEXT,
-    hobbies TEXT
-)");
+class CVDatabase {
+    private $db;
 
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-$email = $_POST['email'];
-$telephone = $_POST['telephone'];
-$adresse = $_POST['adresse'];
-$experience = $_POST['experience'];
-$education = $_POST['education'];
-$langue = $_POST['langue'];
-#$niveau = $_POST['niveau'];
-$hobbies = $_POST['hobbies'];
+    public function __construct($database) {
+        $this->db = new SQLite3($database);
+        $this->initializeDatabase();
+    }
 
-$insert = $db->prepare("INSERT INTO cv (nom, prenom, email, telephone, adresse, experience, education, langue, hobbies) VALUES (:nom, :prenom, :email, :telephone, :adresse, :experience, :education, :langue, :hobbies)");
-$insert->bindValue(':nom', $nom, SQLITE3_TEXT);
-$insert->bindValue(':prenom', $prenom, SQLITE3_TEXT);
-$insert->bindValue(':email', $email, SQLITE3_TEXT);
-$insert->bindValue(':telephone', $telephone, SQLITE3_TEXT);
-$insert->bindValue(':adresse', $adresse, SQLITE3_TEXT);
-$insert->bindValue(':experience', $experience, SQLITE3_TEXT);
-$insert->bindValue(':education', $education, SQLITE3_TEXT);
-$insert->bindValue(':langue', $langue, SQLITE3_TEXT);
-#$inser->bindValue(':niveau', $niveau, SQLITE3_INTEGER);
-$insert->bindValue(':hobbies', $hobbies, SQLITE3_TEXT);
+    private function initializeDatabase() {
+        $this->db->exec("CREATE TABLE IF NOT EXISTS cv (
+            id INTEGER PRIMARY KEY,
+            nom TEXT,
+            prenom TEXT,
+            email TEXT,
+            telephone TEXT,
+            adresse TEXT,
+            experience TEXT,
+            education TEXT,
+            langue TEXT,
+            hobbies TEXT,
+            photo_path TEXT,
+            diplome TEXT,
+            posteA TEXT
+        )");
+    }
 
-$result = $insert->execute();
+    public function insertCV($data) {
+        $insert = $this->db->prepare("INSERT INTO cv (nom, prenom, email, telephone, adresse, experience, education, langue, hobbies, photo_path, diplome, posteA) VALUES (:nom, :prenom, :email, :telephone, :adresse, :experience, :education, :langue, :hobbies, :photoPath, :diplome, :posteA)");
 
-if ($result) {
-    echo "CV enregistré avec succès !";
-} else {
-    echo "Erreur lors de l'enregistrement du CV.";
+        // Bind values
+        $insert->bindValue(':nom', $data['nom'], SQLITE3_TEXT);
+        $insert->bindValue(':prenom', $data['prenom'], SQLITE3_TEXT);
+        // ... Bind other values similarly
+
+        $result = $insert->execute();
+
+        return $result ? true : false;
+    }
+}
+
+// Usage
+$db = new CVDatabase('cv_database.db');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // ... Your file validation and data retrieval code
+
+    $cvData = [
+        'nom' => $_POST['nom'],
+        'prenom' => $_POST['prenom'],
+        // ... Other data fields
+    ];
+
+    $result = $db->insertCV($cvData);
+
+    if ($result) {
+        echo "CV enregistré avec succès !";
+    } else {
+        echo "Erreur lors de l'enregistrement du CV.";
+    }
 }
 ?>
