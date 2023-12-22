@@ -1,5 +1,24 @@
 <?php
+/*
+Ce script PHP est dédié à la gestion de l'édition des CVs stockés dans une base de données SQLite.
 
+Classe :
+- CVEditor : Gère la mise à jour des informations d'un CV dans la base de données, ainsi que l'affichage d'un formulaire pour éditer les détails du CV.
+
+Comportement :
+- CVEditor :
+    - __construct() : Initialise la connexion à la base de données SQLite.
+    - updateCV($cv_id) : Met à jour les informations du CV dans la base de données si une requête POST est reçue avec les champs modifiés.
+    - displayCVForm($cv_id) : Affiche un formulaire pré-rempli avec les détails du CV à éditer.
+    - closeDB() : Ferme la connexion à la base de données.
+
+Le script vérifie d'abord si un ID de CV est spécifié dans les paramètres GET.
+S'il est spécifié, une instance de CVEditor est créée avec le fichier de base de données spécifié.
+Ensuite, il essaie de mettre à jour les informations du CV s'il reçoit une requête POST.
+Enfin, il affiche le formulaire pré-rempli pour éditer les détails du CV.
+
+Ce script ne garantit pas la sécurité contre les injections SQL. Une validation et une échappatoire des données d'entrée sont nécessaires pour éviter les attaques.
+*/
 class CVEditor {
     private $db;
     

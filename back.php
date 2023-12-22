@@ -1,14 +1,27 @@
 <?php
-
+/**
+ * Classe CVDatabase pour gérer la base de données des CV.
+ */
 class CVDatabase {
+    /**
+     * @var SQLite3 $db La connexion à la base de données SQLite.
+     */
     private $db;
 
+    /**
+     * Constructeur de la classe CVDatabase.
+     *
+     * @param string $databaseName Le nom de la base de données.
+     */
     public function __construct($databaseName) {
         $this->db = new SQLite3($databaseName);
 
         $this->createTable();
     }
 
+    /**
+     * Crée la table des CV dans la base de données si elle n'existe pas.
+     */
     private function createTable() {
         $this->db->exec("CREATE TABLE IF NOT EXISTS cv (
             id INTEGER PRIMARY KEY,
@@ -27,6 +40,14 @@ class CVDatabase {
         )");
     }
 
+    /**
+     * Insère un CV dans la base de données.
+     *
+     * @param array $data Les données du CV à insérer.
+     *
+     * @return bool|SQLite3Result Le résultat de l'insertion dans la base de données.
+     */
+    
     public function insertCV($data) {
         $insert = $this->db->prepare("INSERT INTO cv (nom, prenom, email, telephone, adresse, experience, education, langue, hobbies, photo_path, diplome, posteA) VALUES (:nom, :prenom, :email, :telephone, :adresse, :experience, :education, :langue, :hobbies, :photoPath, :diplome, :posteA)");
 

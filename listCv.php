@@ -1,4 +1,27 @@
 <?php
+
+/*
+Ce script PHP gère l'accès à une base de données SQLite pour la manipulation des CVs, ainsi que l'affichage de ces CVs.
+
+Classes :
+- CVDatabase : Gère la connexion à la base de données SQLite et les opérations sur les CVs (initialisation de la base, récupération de tous les CVs).
+- CVRenderer : Classe dédiée à l'affichage des CVs récupérés depuis la base de données.
+
+Comportement :
+- CVDatabase :
+    - __construct() : Initialise la connexion à la base de données SQLite et lance l'initialisation de la table 'cv' si elle n'existe pas.
+    - initializeDatabase() : Crée la table 'cv' avec ses champs si elle n'existe pas.
+    - getAllCVs() : Récupère tous les CVs depuis la base de données et les retourne sous forme de tableau.
+
+- CVRenderer :
+    - renderCVs($cvs) : Affiche les CVs passés en paramètre sous forme de HTML, affichant les détails de chaque CV et proposant des options de modification, suppression et affichage de templates.
+
+Le script crée une instance de CVDatabase pour accéder à la base de données.
+Récupère tous les CVs depuis la base.
+Affiche les détails de chaque CV à l'aide de la classe CVRenderer.
+
+Ce script devrait être intégré dans une structure plus sécurisée pour éviter les failles de sécurité comme les injections SQL.
+*/
 class CVDatabase {
     private $db;
 
