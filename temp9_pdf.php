@@ -35,62 +35,42 @@ if (isset($_GET['id'])) {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: blue;
+                background: linear-gradient(to bottom, #DA4453, #89216B);
                 color: #333;
             }
-            
+        
             .container {
                 width: 80%;
                 margin: 20px auto;
-                background-color: #33DDFF;
+                background-color: #FFE53B;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 padding: 20px;
                 border-radius: 5px;
             }
+
+            .contact-info, .work-experience, .education, .skills  {
+                background-color: #CCCCCC;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                padding: 10px;
+            }
             
-            .header {
-                text-align: center;
+            .work-experience {
+                background-color: #E0E0E0;
                 margin-bottom: 20px;
             }
-            
-            .header h1 {
-                font-size: 28px;
-                margin: 5px 0;
-            }
-            
-            .header p {
-                font-size: 18px;
-                margin: 5px 0;
-                color: #666;
-            }
-            
-            .contact-info, .work-experience, .education, .skills {
+
+            .education {
+                background-color: #CCCCCC;
                 margin-bottom: 20px;
             }
-            
-            h2 {
-                font-size: 24px;
-                margin-bottom: 10px;
+
+            .skills {
+                background-color: #B8B8B8;
+                margin-bottom: 20px;
             }
-            
-            strong {
-                font-weight: bold;
-            }
-            
-            em {
-                font-style: italic;
-                color: #555;
-            }
-            
-            ul {
-                list-style-type: none;
-                padding-left: 0;
-            }
-            
-            li {
-                margin-bottom: 5px;
-            }
-            </style>
+        </style>
+
         </head>
         <body>
             <div class="container">
@@ -99,7 +79,7 @@ if (isset($_GET['id'])) {
                     <p>Poste recherché : ' . htmlspecialchars($posteA) . '</p>
                 </div>
 
-                <div class="contact-info">
+                <div>
                     <img src="' . htmlspecialchars($photo_path) . '" alt="Photo" style="max-width: 200px;">
                 </div>
 

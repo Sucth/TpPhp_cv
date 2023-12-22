@@ -35,14 +35,14 @@ if (isset($_GET['id'])) {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: blue;
+                background-color: #F03535;
                 color: #333;
             }
             
             .container {
                 width: 80%;
                 margin: 20px auto;
-                background-color: #33DDFF;
+                background-color: #F46767;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 padding: 20px;
                 border-radius: 5px;

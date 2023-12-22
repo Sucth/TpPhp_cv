@@ -1,5 +1,4 @@
 <?php
-
 class CVDatabase {
     private $db;
 
@@ -62,19 +61,41 @@ class CVRenderer {
                 echo "<img src='" . $cv['photo_path'] . "' alt='Photo' style='max-width: 200px;'>";
             }
 
-            echo "<a href='update_cv.php?id=" . $cv['id'] . "'>Modifier</a>";
-            echo "<a href='template.php?id=" . $cv['id'] . "'>Afficher le cv</a>";
-            echo "<a href='temp1_pdf.php?id=" . $cv['id'] . "'>Va dormir</a>";
+            echo "<style>";
+            echo "button {
+                color: white;
+                background-color: #2a2f42;
+                border: none;
+                border-radius: 4px;
+                padding: 8px 20px;
+                cursor: pointer;
+            }";
+            echo "</style>";
+
+            echo "<form action='update_cv.php' method='GET'>";
+            echo "<input type='hidden' name='id' value='" . $cv['id'] . "'>";
+            echo "<button type='submit'>Modifier</button>";
+            echo "</form>";
+
+            echo "<form action='delete_cv.php' method='POST'>";
+            echo "<input type='hidden' name='id' value='" . $cv['id'] . "'>";
+            echo "<button type='submit'>Supprimer ce CV</button>";
+            echo "</form>";
+
+            echo "<form action='allTemplate.php' method='GET'>";
+            echo "<input type='hidden' name='id' value='" . $cv['id'] . "'>";
+            echo "<button type='submit'>Afficher les templates</button>";
+            echo "</form>";
             echo "<hr>";
         }
     }
 }
 
-// Usage
 $db = new CVDatabase('cv_database.db');
 $cvRenderer = new CVRenderer();
 
 $cvs = $db->getAllCVs();
+echo "<body style='background-color: #080f25; color: white; padding: 20px;'>";
 $cvRenderer->renderCVs($cvs);
-
+echo "</body>";
 ?>

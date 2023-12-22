@@ -35,14 +35,14 @@ if (isset($_GET['id'])) {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: blue;
-                color: #333;
+                background-color: #1F1F1F;
+                color: white;
             }
             
             .container {
                 width: 80%;
                 margin: 20px auto;
-                background-color: #33DDFF;
+                background-color: #434343;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 padding: 20px;
                 border-radius: 5px;
@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
             .header p {
                 font-size: 18px;
                 margin: 5px 0;
-                color: #666;
+                color: white;
             }
             
             .contact-info, .work-experience, .education, .skills {
@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
             
             em {
                 font-style: italic;
-                color: #555;
+                color: white;
             }
             
             ul {

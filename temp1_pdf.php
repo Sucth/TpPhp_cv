@@ -12,7 +12,6 @@ if (isset($_GET['id'])) {
     $result = $query->execute();
 
     if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        // Récupération des données depuis la base de données
         $prenom = $row['prenom'];
         $nom = $row['nom'];
         $posteA = $row['posteA'];
@@ -25,7 +24,6 @@ if (isset($_GET['id'])) {
         $education = $row['education'];
         $hobbies = $row['hobbies'];
 
-        // Création du contenu HTML du CV
         $html = '
         <!DOCTYPE html>
         <html lang="en">
@@ -102,14 +100,14 @@ if (isset($_GET['id'])) {
                 </div>
 
                 <div class="contact-info">
+                    <img src="' . htmlspecialchars($photo_path) . '" alt="Photo" style="max-width: 200px;">
+                </div>
+
+                <div class="contact-info">
                     <h2>Coordonnées</h2>
                     <p>Email: ' . htmlspecialchars($email) . '</p>
                     <p>Téléphone: ' . htmlspecialchars($telephone) . '</p>
                     <p>Adresse: ' . htmlspecialchars($adresse) . '</p>';
-
-        if ($photo_path) {
-            $html .= '<img src="' . htmlspecialchars($photo_path) . '" alt="Photo" style="max-width: 200px;">';
-        }
 
         $html .= '</div>
 
@@ -123,23 +121,19 @@ if (isset($_GET['id'])) {
                 <div class="education">
                     <h2>Formation</h2>
                     <p><strong>Diplôme obtenu: ' . htmlspecialchars($diplome) . '</strong></p>
-                    <p><em>Nom de l\'établissement - Ville, Pays</em></p>
                     <p>' . htmlspecialchars($education) . '</p>
-                    <!-- Ajoute d\'autres éléments de la formation ici -->
                 </div>
 
                 <div class="skills">
                     <h2>Soft Skills</h2>
                     <ul>
                         <li>' . htmlspecialchars($hobbies) . '</li>
-                        <!-- Ajoute d\'autres compétences ici -->
                     </ul>
                 </div>
             </div>
         </body>
         </html>';
 
-        // Création du PDF avec mPDF
         $mpdf = new Mpdf(['mode' => 'utf-8']);
         $mpdf->WriteHTML($html);
         $mpdf->Output('cv.pdf', 'D');

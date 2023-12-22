@@ -35,14 +35,14 @@ if (isset($_GET['id'])) {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: blue;
+                background-color: #08BE89;
                 color: #333;
             }
             
             .container {
                 width: 80%;
                 margin: 20px auto;
-                background-color: #33DDFF;
+                background-color: #33FFC4;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 padding: 20px;
                 border-radius: 5px;
@@ -121,6 +121,7 @@ if (isset($_GET['id'])) {
                 <div class="education">
                     <h2>Formation</h2>
                     <p><strong>Diplôme obtenu: ' . htmlspecialchars($diplome) . '</strong></p>
+                    <p><em>Nom de l\'établissement - Ville, Pays</em></p>
                     <p>' . htmlspecialchars($education) . '</p>
                 </div>
 
